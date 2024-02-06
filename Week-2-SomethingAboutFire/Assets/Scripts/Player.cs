@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Make the player script a singleton
+    public static Player playerInstance;
+    
     private Rigidbody rb;
     public float forceAmount = 5;
     public float maxVelocity = 10;
@@ -12,7 +16,20 @@ public class Player : MonoBehaviour
     public float jumpForceAmount = 0.1f;
     public float jumpStrength = 1.0f;
     public bool isJumping = false;
-    
+
+    private void Awake()
+    {
+        if (playerInstance == null)
+        {
+            playerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +95,6 @@ public class Player : MonoBehaviour
             rb.velocity = newVelocity;
         }
         
-        Debug.Log(rb.velocity.magnitude);
+        //Debug.Log(rb.velocity.magnitude);
     }
 }
