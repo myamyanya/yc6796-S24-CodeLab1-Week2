@@ -38,8 +38,12 @@ public class Fire : MonoBehaviour
                 // Find this floor according to this number
                 GameObject newFloor = floors[randomIndex];
                 
+                // Generate a buffer
+                int randomInt = Random.Range(0, 2);
+                float buffer = randomInt == 0 ? -0.5f : 0.5f;
+                
                 // Put fire on this randomly generated floor
-                transform.position = new Vector3(newFloor.transform.position.x, newFloor.transform.position.y + 1.7f, 0.2f);
+                transform.position = new Vector3(newFloor.transform.position.x + buffer, newFloor.transform.position.y + 1.7f, 0.2f);
             }
             else
             {

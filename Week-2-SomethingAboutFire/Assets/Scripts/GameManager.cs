@@ -36,11 +36,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(score);
         scoreText.text = "Score: " + score;
 
         if (score == targetScore)
         {
-            if (SceneManager.GetActiveScene().buildIndex <= SceneManager.sceneCountInBuildSettings)
+            if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings-1)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
